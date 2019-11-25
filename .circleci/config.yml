@@ -8,8 +8,7 @@ jobs:
       MY_BUILD_DIR: /root/project/
     steps:
       - run: apk update && apk add git 
-   #  - checkout 
-      - run: git submodule sync && git submodule update --init
+   #  - checkout
       - run: apk add --update python python-dev py-pip build-base
       - run: pip install awscli
       - deploy: 
