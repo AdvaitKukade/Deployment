@@ -16,7 +16,7 @@ jobs:
           command: | 
             if [ "${CIRCLE_BRANCH}" = "master" ]; then 
               aws s3 sync $MY_BUILD_DIR \
-              
+              s3://htmlmybucket1/Html_Files --delete               
             else
               echo "Not master branch, Dry run only." 
             fi    
@@ -24,4 +24,4 @@ workflows:
   workflow_1:
     jobs:
       - build   
-#s3://htmlmybucket1/images --delete 
+
