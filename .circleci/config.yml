@@ -2,16 +2,25 @@ version: 2.1
 jobs:
   build:
     docker: 
-      - image: alpine
+      - image: advaitkukade/htmlassignment:v1.0 
+    working_directory: /root/project/
+    environment:
+      MY_BUILD_DIR: /root/project/
     steps:
-      - run: apk add nginx 
-      - run: echo "Installed nginx !!!" 
-    #  - run: git submodule sync && git submodule update
-    #  - run: apk add --update python python-dev py-pip build-base
-    #  - run: pip instal awscli 
-    #  - run: HUGO_ENV=production hugo -v -d $HUGO_BUILD_DIR
-    #  - run: |
-    #      htmlproofer $HUGO_BUILD_DIR 
+      - run: apk update && apk add git 
+      - checkout 
+      - run: git submodule sync && git submodule update 
+      - run: apk add --update python python-dev py-pip build-base
+      - run: pip install awscli
+      - deploy: 
+          name: deploy to AWS 
+          command: | 
+            if [ "${CIRCLE_BRANCH}" = "master" ]; then 
+              aws s3 sync $MY_BUILD_DIR \
+              s3://htmlmybucket1/images --delete 
+            else
+              echo "Not master branch, Dry run only." 
+            fi    
 workflows:
   workflow_1:
     jobs:
