@@ -39,7 +39,7 @@ jobs:
           name: deploy to AWS
           command: |
             if [ "${CIRCLE_BRANCH}" = "master" ]; then
-              aws s3 sync ./hugo/ \
+              aws s3 sync ./hugo \
               s3://htmlmybucket1/HTML --delete
             else
               echo "Not master branch, dry run only"
