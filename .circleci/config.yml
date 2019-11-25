@@ -1,4 +1,4 @@
-version: 2
+version: 2.1
 jobs:
   build:
     docker: 
@@ -17,4 +17,4 @@ jobs:
           htmlproofer $HUGO_BUILD_DIR 
 workflows:
   jobs:
-    - build          
+    - build     
