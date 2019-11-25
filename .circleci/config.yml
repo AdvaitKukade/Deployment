@@ -16,5 +16,6 @@ jobs:
       - run: |
           htmlproofer $HUGO_BUILD_DIR 
 workflows:
-  jobs:
-    - build     
+  workflow_1:
+    jobs:
+      - build   
