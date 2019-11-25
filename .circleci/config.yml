@@ -2,20 +2,16 @@ version: 2.1
 jobs:
   build:
     docker: 
-      - image: cibuilds/hugo:latest
-      - image: alpine
-    working_directory: ~/hugo
-    environment:
-      HUGO_BUILD_DIR: ~/hugo/public
+      - image: advaitkukade/html:v2.0 
     steps:
-      - run: apk add update && apk add git
+      - run: apk add nginx 
       - checkout
-      - run: git submodule sync && git submodule update
-      - run: apk add --update python python-dev py-pip build-base
-      - run: pip instal awscli 
-      - run: HUGO_ENV=production hugo -v -d $HUGO_BUILD_DIR
-      - run: |
-          htmlproofer $HUGO_BUILD_DIR 
+    #  - run: git submodule sync && git submodule update
+    #  - run: apk add --update python python-dev py-pip build-base
+    #  - run: pip instal awscli 
+    #  - run: HUGO_ENV=production hugo -v -d $HUGO_BUILD_DIR
+    #  - run: |
+    #      htmlproofer $HUGO_BUILD_DIR 
 workflows:
   workflow_1:
     jobs:
