@@ -3,6 +3,7 @@ jobs:
   build:
     docker: 
       - image: cibuilds/hugo:latest
+      - image: alpine
     working_directory: ~/hugo
     environment:
       HUGO_BUILD_DIR: ~/hugo/public
