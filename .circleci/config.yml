@@ -3,8 +3,5 @@ jobs:
   build:
     docker: 
       image: advaitkukade/html:v2.0
-    #working_directory:
-    environment:
     steps:
       - run: apk add nginx
-      
